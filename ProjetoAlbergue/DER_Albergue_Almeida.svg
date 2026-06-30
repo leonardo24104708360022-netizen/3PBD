@@ -1,0 +1,164 @@
+<svg width="1400" height="900" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <rect width="1400" height="900" fill="#FFFFFF"/>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#444444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- ============ ENTIDADE: USUARIO ============ -->
+  <g>
+    <rect x="40" y="40" width="280" height="210" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.5"/>
+    <rect x="40" y="40" width="280" height="32" rx="8" fill="#185FA5"/>
+    <rect x="40" y="56" width="280" height="16" fill="#185FA5"/>
+    <text x="180" y="62" text-anchor="middle" font-size="15" font-weight="bold" fill="#FFFFFF">USUARIO</text>
+    <text x="56" y="92"  font-size="12" fill="#042C53">PK id_usuario      INT</text>
+    <text x="56" y="112" font-size="12" fill="#042C53">    nome           VARCHAR(100)</text>
+    <text x="56" y="132" font-size="12" fill="#042C53">    email          VARCHAR(150)</text>
+    <text x="56" y="152" font-size="12" fill="#042C53">    senha_hash     VARCHAR(255)</text>
+    <text x="56" y="172" font-size="12" fill="#042C53">    cpf            CHAR(11)</text>
+    <text x="56" y="192" font-size="12" fill="#042C53">    telefone       VARCHAR(20)</text>
+    <text x="56" y="212" font-size="12" fill="#042C53">    tipo           ENUM</text>
+    <text x="56" y="232" font-size="12" fill="#042C53">    data_cadastro  DATETIME</text>
+  </g>
+
+  <!-- ============ ENTIDADE: RESERVA ============ -->
+  <g>
+    <rect x="540" y="40" width="290" height="230" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/>
+    <rect x="540" y="40" width="290" height="32" rx="8" fill="#0F6E56"/>
+    <rect x="540" y="56" width="290" height="16" fill="#0F6E56"/>
+    <text x="685" y="62" text-anchor="middle" font-size="15" font-weight="bold" fill="#FFFFFF">RESERVA</text>
+    <text x="556" y="92"  font-size="12" fill="#04342C">PK id_reserva         INT</text>
+    <text x="556" y="112" font-size="12" fill="#04342C">FK id_usuario         INT</text>
+    <text x="556" y="132" font-size="12" fill="#04342C">   data_checkin       DATE</text>
+    <text x="556" y="152" font-size="12" fill="#04342C">   data_checkout      DATE</text>
+    <text x="556" y="172" font-size="12" fill="#04342C">   status             ENUM</text>
+    <text x="556" y="192" font-size="12" fill="#04342C">   valor_total        DECIMAL(10,2)</text>
+    <text x="556" y="212" font-size="12" fill="#04342C">   data_reserva       DATETIME</text>
+    <text x="556" y="232" font-size="12" fill="#04342C">   data_cancelamento  DATETIME</text>
+    <text x="556" y="252" font-size="11" fill="#0F6E56" font-style="italic">CHECK: checkout &gt; checkin</text>
+  </g>
+
+  <!-- ============ ENTIDADE: PAGAMENTO ============ -->
+  <g>
+    <rect x="1040" y="40" width="300" height="230" rx="8" fill="#FBEAF0" stroke="#993556" stroke-width="1.5"/>
+    <rect x="1040" y="40" width="300" height="32" rx="8" fill="#993556"/>
+    <rect x="1040" y="56" width="300" height="16" fill="#993556"/>
+    <text x="1190" y="62" text-anchor="middle" font-size="15" font-weight="bold" fill="#FFFFFF">PAGAMENTO</text>
+    <text x="1056" y="92"  font-size="12" fill="#4B1528">PK id_pagamento       INT</text>
+    <text x="1056" y="112" font-size="12" fill="#4B1528">FK,UQ id_reserva      INT</text>
+    <text x="1056" y="132" font-size="12" fill="#4B1528">   titular_cartao     VARCHAR(100)</text>
+    <text x="1056" y="152" font-size="12" fill="#4B1528">   ultimos_digitos    CHAR(4)</text>
+    <text x="1056" y="172" font-size="12" fill="#4B1528">   bandeira           VARCHAR(30)</text>
+    <text x="1056" y="192" font-size="12" fill="#4B1528">   status_pagamento   ENUM</text>
+    <text x="1056" y="212" font-size="12" fill="#4B1528">   data_pagamento     DATETIME</text>
+    <text x="1056" y="232" font-size="12" fill="#4B1528">   valor_pago         DECIMAL(10,2)</text>
+    <text x="1056" y="252" font-size="11" fill="#993556" font-style="italic">UNIQUE(id_reserva) = relação 1:1</text>
+  </g>
+
+  <!-- ============ ENTIDADE: QUARTO ============ -->
+  <g>
+    <rect x="40" y="380" width="280" height="190" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="1.5"/>
+    <rect x="40" y="380" width="280" height="32" rx="8" fill="#854F0B"/>
+    <rect x="40" y="396" width="280" height="16" fill="#854F0B"/>
+    <text x="180" y="402" text-anchor="middle" font-size="15" font-weight="bold" fill="#FFFFFF">QUARTO</text>
+    <text x="56" y="432" font-size="12" fill="#412402">PK id_quarto       INT</text>
+    <text x="56" y="452" font-size="12" fill="#412402">UQ numero          VARCHAR(10)</text>
+    <text x="56" y="472" font-size="12" fill="#412402">   capacidade      ENUM (4/8/12)</text>
+    <text x="56" y="492" font-size="12" fill="#412402">   tem_banheiro    TINYINT(1)</text>
+    <text x="56" y="512" font-size="12" fill="#412402">   andar           INT</text>
+    <text x="56" y="532" font-size="12" fill="#412402">   descricao       TEXT</text>
+    <text x="56" y="552" font-size="11" fill="#854F0B" font-style="italic">CHECK: banheiro x capacidade</text>
+  </g>
+
+  <!-- ============ ENTIDADE: VAGA ============ -->
+  <g>
+    <rect x="540" y="350" width="290" height="250" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.5"/>
+    <rect x="540" y="350" width="290" height="32" rx="8" fill="#534AB7"/>
+    <rect x="540" y="366" width="290" height="16" fill="#534AB7"/>
+    <text x="685" y="372" text-anchor="middle" font-size="15" font-weight="bold" fill="#FFFFFF">VAGA</text>
+    <text x="556" y="402" font-size="12" fill="#26215C">PK id_vaga         INT</text>
+    <text x="556" y="422" font-size="12" fill="#26215C">FK id_quarto       INT</text>
+    <text x="556" y="442" font-size="12" fill="#26215C">   numero_vaga     INT</text>
+    <text x="556" y="462" font-size="12" fill="#26215C">   tipo_cama       ENUM</text>
+    <text x="556" y="482" font-size="12" fill="#26215C">   posicao         ENUM</text>
+    <text x="556" y="502" font-size="12" fill="#26215C">   sol             ENUM</text>
+    <text x="556" y="522" font-size="12" fill="#26215C">   ativo           TINYINT(1)</text>
+    <text x="556" y="542" font-size="12" fill="#26215C">   observacoes     TEXT</text>
+    <text x="556" y="562" font-size="11" fill="#534AB7" font-style="italic">UQ (id_quarto, numero_vaga)</text>
+    <text x="556" y="580" font-size="11" fill="#534AB7" font-style="italic">FK ON DELETE RESTRICT</text>
+  </g>
+
+  <!-- ============ ENTIDADE: ITEM_RESERVA ============ -->
+  <g>
+    <rect x="1040" y="380" width="300" height="160" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="1.5"/>
+    <rect x="1040" y="380" width="300" height="32" rx="8" fill="#993C1D"/>
+    <rect x="1040" y="396" width="300" height="16" fill="#993C1D"/>
+    <text x="1190" y="402" text-anchor="middle" font-size="15" font-weight="bold" fill="#FFFFFF">ITEM_RESERVA</text>
+    <text x="1056" y="432" font-size="12" fill="#4A1B0C">PK id_item         INT</text>
+    <text x="1056" y="452" font-size="12" fill="#4A1B0C">FK id_reserva      INT</text>
+    <text x="1056" y="472" font-size="12" fill="#4A1B0C">FK id_vaga         INT</text>
+    <text x="1056" y="492" font-size="12" fill="#4A1B0C">   valor_diaria    DECIMAL(10,2)</text>
+    <text x="1056" y="512" font-size="11" fill="#993C1D" font-style="italic">FK reserva ON DELETE CASCADE</text>
+    <text x="1056" y="528" font-size="11" fill="#993C1D" font-style="italic">FK vaga ON DELETE RESTRICT</text>
+  </g>
+
+  <!-- ============ ENTIDADE: PRECO_VAGA ============ -->
+  <g>
+    <rect x="540" y="690" width="290" height="170" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="1.5"/>
+    <rect x="540" y="690" width="290" height="32" rx="8" fill="#3B6D11"/>
+    <rect x="540" y="706" width="290" height="16" fill="#3B6D11"/>
+    <text x="685" y="712" text-anchor="middle" font-size="15" font-weight="bold" fill="#FFFFFF">PRECO_VAGA</text>
+    <text x="556" y="742" font-size="12" fill="#173404">PK id_preco        INT</text>
+    <text x="556" y="762" font-size="12" fill="#173404">FK id_vaga         INT</text>
+    <text x="556" y="782" font-size="12" fill="#173404">   valor_diaria    DECIMAL(10,2)</text>
+    <text x="556" y="802" font-size="12" fill="#173404">   data_inicio     DATE</text>
+    <text x="556" y="822" font-size="12" fill="#173404">   data_fim        DATE (NULL=atual)</text>
+    <text x="556" y="842" font-size="11" fill="#3B6D11" font-style="italic">Histórico de preços por vaga</text>
+  </g>
+
+  <!-- ============ RELACIONAMENTOS ============ -->
+
+  <!-- USUARIO -> RESERVA (1:N) -->
+  <path d="M320 110 L540 110" fill="none" stroke="#444444" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="430" y="100" text-anchor="middle" font-size="12" fill="#333333">1 : N</text>
+  <text x="430" y="125" text-anchor="middle" font-size="11" fill="#666666" font-style="italic">faz</text>
+
+  <!-- RESERVA -> PAGAMENTO (1:1) -->
+  <path d="M830 130 L1040 130" fill="none" stroke="#444444" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="935" y="120" text-anchor="middle" font-size="12" fill="#333333">1 : 1</text>
+  <text x="935" y="145" text-anchor="middle" font-size="11" fill="#666666" font-style="italic">tem</text>
+
+  <!-- RESERVA -> ITEM_RESERVA (1:N) -->
+  <path d="M829 230 C 950 230, 950 420, 1040 460" fill="none" stroke="#444444" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="940" y="300" text-anchor="middle" font-size="12" fill="#333333">1 : N</text>
+  <text x="940" y="320" text-anchor="middle" font-size="11" fill="#666666" font-style="italic">contém</text>
+
+  <!-- QUARTO -> VAGA (1:N) -->
+  <path d="M320 470 L540 470" fill="none" stroke="#444444" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="430" y="460" text-anchor="middle" font-size="12" fill="#333333">1 : N</text>
+  <text x="430" y="485" text-anchor="middle" font-size="11" fill="#666666" font-style="italic">possui</text>
+
+  <!-- VAGA -> ITEM_RESERVA (1:N) -->
+  <path d="M830 470 L1040 470" fill="none" stroke="#444444" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="935" y="460" text-anchor="middle" font-size="12" fill="#333333">1 : N</text>
+  <text x="935" y="485" text-anchor="middle" font-size="11" fill="#666666" font-style="italic">está em</text>
+
+  <!-- VAGA -> PRECO_VAGA (1:N) -->
+  <path d="M685 600 L685 690" fill="none" stroke="#444444" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="730" y="650" text-anchor="middle" font-size="12" fill="#333333">1 : N</text>
+  <text x="730" y="670" text-anchor="middle" font-size="11" fill="#666666" font-style="italic">histórico</text>
+
+  <!-- ============ LEGENDA ============ -->
+  <g>
+    <rect x="40" y="650" width="400" height="120" rx="6" fill="#F5F5F5" stroke="#CCCCCC" stroke-width="1"/>
+    <text x="56" y="675" font-size="13" font-weight="bold" fill="#333333">Legenda</text>
+    <text x="56" y="698" font-size="12" fill="#333333">PK = Chave Primária   |   FK = Chave Estrangeira</text>
+    <text x="56" y="718" font-size="12" fill="#333333">UQ = Restrição UNIQUE</text>
+    <text x="56" y="738" font-size="12" fill="#333333">1:N = Um para Muitos   |   1:1 = Um para Um</text>
+    <text x="56" y="758" font-size="12" fill="#333333">Banco: albergue_almeida (MySQL 8.x)</text>
+  </g>
+
+  <text x="700" y="890" text-anchor="middle" font-size="13" font-weight="bold" fill="#1F4E79">DER — Sistema de Reservas do Albergue do Sr. Almeida</text>
+</svg>
